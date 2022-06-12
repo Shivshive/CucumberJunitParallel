@@ -14,13 +14,13 @@ public class Hooks {
 		DriverFactory.initializeDriver("chrome");
 	}
 
-	@After(order = 1)
+	@After(order = 2)
 	public void takeScreenShot(Scenario scenario) {
 		Shutterbug.shootPage(DriverFactory.getDriver(), Capture.VIEWPORT).save();
 		System.out.println("Scenario Name : "+scenario.getName()+" || Sceanrio After Block || Shutterbut Screen Shot Taken");
 	}
 
-	@After(order = 2)
+	@After(order = 1)
 	public void terminateDriver() {
 		DriverFactory.removeDriver();
 	}

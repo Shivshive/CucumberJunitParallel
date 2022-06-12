@@ -3,6 +3,7 @@ package stepdef;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import util.DriverFactory;
+import static org.junit.Assert.*;
 
 public class AmazonStps {
 
@@ -20,6 +21,7 @@ public class AmazonStps {
 		System.out.println("user_verify_title_of_page");
 		String title = DriverFactory.getDriver().getTitle();
 		System.out.println(title);
+//		fail("Intentional Fail of Amazon Test Case.. !");
 	}
 
 }

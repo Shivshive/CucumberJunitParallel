@@ -1,6 +1,0 @@
-runners\Junit_Runner.class
-util\DriverFactory.class
-runners\Junit_Runner_Amazon.class
-stepdef\AmazonStps.class
-hooks\Hooks.class
-stepdef\FlipkartSteps.class

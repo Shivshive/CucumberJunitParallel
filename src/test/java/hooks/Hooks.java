@@ -21,7 +21,8 @@ public class Hooks {
 	}
 
 	@After(order = 1)
-	public void terminateDriver() {
+	public void terminateDriver(Scenario scenario) {
+		scenario.log(null);
 		DriverFactory.removeDriver();
 	}
 

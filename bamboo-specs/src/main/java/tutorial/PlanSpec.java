@@ -61,7 +61,7 @@ public class PlanSpec {
     Project project() {
         return new Project()
                 .name("MyBambooBuildSpecProject")
-                .key("MyBBSPRJ123");
+                .key("MYBBSPRJ123");
     }
 
     Plan createPlan() {

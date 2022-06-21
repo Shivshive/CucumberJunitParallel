@@ -78,7 +78,7 @@ public class PlanSpec {
                 				new VcsCheckoutTask()
                 					.checkoutItems(new CheckoutItem().defaultRepository()).cleanCheckout(true),
                 				new MavenTask().enabled(true).executableLabel("maven 3").jdk("JDK 1.8").goal("mvn clean test -Denv=${env}");
-                				)))
+                				)));
     }
 
 

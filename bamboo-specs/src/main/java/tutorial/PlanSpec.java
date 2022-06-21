@@ -1,11 +1,22 @@
 package tutorial;
 
+import java.util.Base64;
+
 import com.atlassian.bamboo.specs.api.BambooSpec;
+import com.atlassian.bamboo.specs.api.builders.plan.Job;
 import com.atlassian.bamboo.specs.api.builders.plan.Plan;
 import com.atlassian.bamboo.specs.api.builders.plan.PlanIdentifier;
+import com.atlassian.bamboo.specs.api.builders.plan.Stage;
 import com.atlassian.bamboo.specs.api.builders.project.Project;
+import com.atlassian.bamboo.specs.builders.repository.git.UserPasswordAuthentication;
+import com.atlassian.bamboo.specs.builders.repository.github.GitHubRepository;
+import com.atlassian.bamboo.specs.builders.task.CheckoutItem;
+import com.atlassian.bamboo.specs.builders.task.CleanWorkingDirectoryTask;
+import com.atlassian.bamboo.specs.builders.task.MavenTask;
+import com.atlassian.bamboo.specs.builders.task.VcsCheckoutTask;
 import com.atlassian.bamboo.specs.util.BambooServer;
 import com.atlassian.bamboo.specs.api.builders.permission.Permissions;
+import com.atlassian.bamboo.specs.api.builders.Variable;
 import com.atlassian.bamboo.specs.api.builders.permission.PermissionType;
 import com.atlassian.bamboo.specs.api.builders.permission.PlanPermissions;
 
@@ -43,15 +54,27 @@ public class PlanSpec {
 
     Project project() {
         return new Project()
-                .name("BuilderSpec_CucumberSample")
-                .key("BSCSJF");
+                .name("MyBambooBuildSpecProject")
+                .key("MyBBSPRJ");
     }
 
     Plan createPlan() {
         return new Plan(
                 project(),
                 "BSCSJF_PLAN", "BSCSJFKEY")
-                .description("Plan created from (enter repository url of your plan)");
+                .description("Plan created from through bamboo spec")
+                .enabled(true)
+                .variables(new Variable("env", env))
+                .stages(new Stage("Stage1").jobs(new Job("JOB1","JOBKEY")	
+                		.tasks(
+                				new CleanWorkingDirectoryTask(),
+                				new VcsCheckoutTask()
+                					.checkoutItems(new CheckoutItem().defaultRepository()).cleanCheckout(true),
+                				new MavenTask().enabled(true).executableLabel("maven 3").jdk("JDK 1.8").goal("mvn clean test -Denv=${env}")
+                				)))
+                .linkedRepositories(repoUrl)
+                .planRepositories(new GitHubRepository().name(repoName).authentication(new UserPasswordAuthentication(Base64.getDecoder().decode(username.getBytes()).toString()).password(Base64.getDecoder().decode(password.getBytes()).toString()))); 
+            
     }
 
 

@@ -26,6 +26,12 @@ import com.atlassian.bamboo.specs.api.builders.permission.PlanPermissions;
  */
 @BambooSpec
 public class PlanSpec {
+	
+	static String repoUrl = "CucumberSel";
+	static String repoName= "CucumberJunitParallel";
+	static String env = "dev";
+	static String username = "c2hpdnNoaXZlMDRAeWFob28uY29t";
+	static String password = "U2hpdmU3NDQ4JA==";
 
     /**
      * Run main to publish plan on Bamboo

@@ -71,16 +71,14 @@ public class PlanSpec {
                 .description("Plan created from through bamboo spec")
                 .enabled(true)
                 .variables(new Variable("env", env))
+                .linkedRepositories(repoUrl)
                 .stages(new Stage("Stage1123").jobs(new Job("JOB1","JOBKEY123")	
                 		.tasks(
                 				new CleanWorkingDirectoryTask(),
                 				new VcsCheckoutTask()
                 					.checkoutItems(new CheckoutItem().defaultRepository()).cleanCheckout(true),
-                				new MavenTask().enabled(true).executableLabel("maven 3").jdk("JDK 1.8").goal("mvn clean test -Denv=${env}")
+                				new MavenTask().enabled(true).executableLabel("maven 3").jdk("JDK 1.8").goal("mvn clean test -Denv=${env}");
                 				)))
-                .linkedRepositories(repoUrl)
-                .planRepositories(new GitHubRepository().name(repoName).authentication(new UserPasswordAuthentication(Base64.getDecoder().decode(username.getBytes()).toString()).password(Base64.getDecoder().decode(password.getBytes()).toString()))); 
-            
     }
 
 

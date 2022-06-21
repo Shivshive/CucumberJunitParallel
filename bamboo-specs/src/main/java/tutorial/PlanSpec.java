@@ -61,17 +61,17 @@ public class PlanSpec {
     Project project() {
         return new Project()
                 .name("MyBambooBuildSpecProject")
-                .key("MyBBSPRJ");
+                .key("MyBBSPRJ123");
     }
 
     Plan createPlan() {
         return new Plan(
                 project(),
-                "BSCSJF_PLAN", "BSCSJFKEY")
+                "BSCSJF_PLAN", "BSCSJFKEY123")
                 .description("Plan created from through bamboo spec")
                 .enabled(true)
                 .variables(new Variable("env", env))
-                .stages(new Stage("Stage1").jobs(new Job("JOB1","JOBKEY")	
+                .stages(new Stage("Stage1123").jobs(new Job("JOB1","JOBKEY123")	
                 		.tasks(
                 				new CleanWorkingDirectoryTask(),
                 				new VcsCheckoutTask()
